@@ -1,0 +1,208 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: stockTransferNew API
+host: 'localhost:10010'
+basePath: /stockTransferNew
+schemes:
+  - http
+consumes:
+  - multipart/form-data
+  - application/json
+produces:
+  - application/json
+  - text/plain
+paths:
+  /v1/StockTransferNew:
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of StockTransferNew
+      operationId: v1_StockTransferNewList
+      parameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number of the request
+        - name: count
+          in: query
+          type: integer
+          description: Number of categories per page
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: sort
+          in: query
+          type: string
+          description: sort parameter
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    post:
+      description: Create a new StockTransferNew
+      operationId: v1_StockTransferNewCreate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to create a StockTransferNew
+          schema:
+            $ref: '#/definitions/StockTransferNew_create'
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+  '/v1/StockTransferNew/{id}':
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of StockTransferNew
+      operationId: v1_StockTransferNewShow
+      parameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the object to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    put:
+      description: Create a new StockTransferNew
+      operationId: v1_StockTransferNewUpdate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to update a StockTransferNew
+          schema:
+            $ref: '#/definitions/StockTransferNew_create'
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the StockTransferNew to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    delete:
+      description: Create a new StockTransferNew
+      operationId: v1_StockTransferNewDestroy
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the StockTransferNew to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+definitions:
+  StockTransferNew_create:
+    properties:
+      _id:
+        type: string
+      sourceWarehouse:
+        type: string
+      destinationWarehouse:
+        type: string
+      approvedBy:
+        type: string
+      approvedOn:
+        type: string
+      po_id:
+        type: string
+      grn_id:
+        type: string
+      products:
+        type: array
+        items:
+          properties:
+            name:
+              type: string
+            mrp:
+              type: string
+            expiry:
+              type: string
+            location:
+              type: string
+            area:
+              type: string
+            rackId:
+              type: string
+            binId:
+              type: string
+            newLocation:
+              type: string
+            newArea:
+              type: string
+            newRack:
+              type: string
+            newBin:
+              type: string
+            purchaseCost:
+              type: string
+            saleableQty:
+              type: string
+            nonSaleableQty:
+              type: string
+            noOfQty:
+              type: number
+            noOfSaleableQty:
+              type: number
+            noOfNonSaleableQty:
+              type: number
+            typeOfQty:
+              type: string
+            remarks:
+              type: string
+      status:
+        type: string
+      deleted:
+        type: boolean
+      createdBy:
+        type: string
+      modifiedBy:
+        type: string
+      createdAt:
+        type: string
+      lastUpdated:
+        type: string
